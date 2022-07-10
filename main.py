@@ -1,0 +1,3 @@
+from work import *
+
+main()
