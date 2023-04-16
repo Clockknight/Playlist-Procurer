@@ -1,5 +1,25 @@
-from scripts.functions import *
+import shutil
+import os
+import pytube
+from pytube import *
+import moviepy
+from moviepy.editor import *
+from moviepy.audio import *
 
-# TODO Come back when Pyinstaller works for 3.10
-# Pyinstaller would work for 3.9 py, but intention is to get album downloader exported, which isn't possible when pyinstaller doesnt work with 3.10
-main()
+url = input("Please input the URL of the YouTube Playlist that you want to Procure.\n\t")
+userPlaylist = Playlist(url)
+pltitle = userPlaylist.title
+if not os.path.exists(pltitle):
+    os.makedirs(pltitle)
+
+for video in userPlaylist.videos:
+    mediapath4 = video.streams.filter(mime_type="audio/mp4").order_by("abr").last().download()
+    clip = AudioFileClip(mediapath4)
+
+    mediapath3 = mediapath4[:-1] + "3"
+    filename = os.path.basename(mediapath3)
+    clip.write_audiofile(mediapath3, logger=None)
+
+    os.rename(mediapath3, ".\\" + pltitle + "\\" + filename)
+    os.remove(mediapath4)
+    print(mediapath4)
