@@ -42,7 +42,7 @@ Might be difficult, it mostly would be easy or hard on how long it would take to
 </h3></a>
 
   <p align="center">
-    Python based script that downloads discographies and applies tags according to Discogs
+    Python based script that downloads YouTube videos given a playlist URL
     <br />
     <a href="https://github.com/Clockknight/album-downloader"><strong>Explore the docs »</strong></a>
     <br />
